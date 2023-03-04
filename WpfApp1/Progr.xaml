@@ -1,0 +1,63 @@
+﻿<Window x:Class="WpfApp1.Progr"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1"
+        mc:Ignorable="d"
+       Title="Прокат_ЦПКиО_Маяковского" Height="450" Width="800">
+    <Grid>
+        <TabControl>
+            <TabItem Background="LightGreen">
+                <TabItem.Header>
+                    <TextBlock FontSize="18">Сформировать заказ</TextBlock>
+                </TabItem.Header>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="145*"/>
+                        <ColumnDefinition Width="248*"/>
+                    </Grid.ColumnDefinitions>
+                    <ListBox x:Name="uslugi" Margin="261.857,38,22,10" FontSize="18" Grid.Column="1">Услуги:</ListBox>
+                    <ComboBox x:Name="codeUslugi" Margin="234,38,412,309" FontSize="18" Grid.ColumnSpan="2">
+                        <ComboBoxItem IsSelected="True">Код услуги</ComboBoxItem>
+                    </ComboBox>
+                    <Label Margin="10,39,94,309" FontSize="18" Content="Выберите код услуги"></Label>
+                    <Label Margin="10,79,119.143,269" FontSize="18" Content="Выберите клиента"></Label>
+                    <ComboBox Margin="234,79,412,269" FontSize="18" Grid.ColumnSpan="2">
+                        <ComboBoxItem IsSelected="True">Код клиента</ComboBoxItem>
+                    </ComboBox>
+                    <Label Margin="10,119,62.143,229" FontSize="18" Content="Время проката а минутах"></Label>
+                    <TextBox x:Name="timeProkat" Margin="234,119,466,229" FontSize="18" Grid.ColumnSpan="2"/>
+                    <Label Margin="10,159,62.143,189" FontSize="18" Content="Индентификатор заказа"/>
+                    <TextBox x:Name="idZakaza" Margin="234,159,466,189" FontSize="18" Grid.ColumnSpan="2"/>
+                    <Label Margin="10,199,171.143,149" FontSize="18" Content="Дата заказа"/>
+                    <DatePicker x:Name="dateZakaza" Margin="234,199,412,149" FontSize="18" Grid.ColumnSpan="2"></DatePicker>
+                    <Button x:Name="addCU" Background="LightGreen" Margin="0,38,239,309" FontSize="18" Content="Добавить услугу" Grid.Column="1" Click="addCUClick" HorizontalAlignment="Right" Width="166"></Button>
+                    <Button x:Name="createOrder" Background="LightGreen" Margin="49,295,62.143,52" FontSize="18" Content="Сформировать заказ" Click="createOrderClick"></Button>
+                    <Button x:Name="clearList" Background="LightGreen" Margin="268,295,412,52" FontSize="18" Content="Очистить" Grid.ColumnSpan="2" Click="clearListClick"/>
+                </Grid>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <TextBlock FontSize="18" Background="LightGreen">Принять товар</TextBlock>
+                </TabItem.Header>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <TextBlock FontSize="18" Background="LightGreen">Данные о пользователях</TextBlock>
+                </TabItem.Header>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <TextBlock FontSize="18" Background="LightGreen">Расходники</TextBlock>
+                </TabItem.Header>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <TextBlock FontSize="18" Background="LightGreen">Заказы</TextBlock>
+                </TabItem.Header>
+                <DataGrid></DataGrid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

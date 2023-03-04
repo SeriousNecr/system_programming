@@ -1,0 +1,21 @@
+﻿<Window x:Class="WpfApp1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1"
+        mc:Ignorable="d"
+       Title="Прокат_ЦПКиО_Маяковского" Height="450" Width="800">
+    <Viewbox>
+        <Grid>
+            <TextBox x:Name="login" Margin="280,100,280,280"/>
+            <TextBox x:Name="password" Margin="280,150,280,230"/>
+            <Label Margin="70,100,530,280" FontSize="24">Введите логин:</Label>
+            <Label Margin="70,150,530,230" FontSize="24">Введите пароль:</Label>
+            <Button FontSize="24" x:Name="enter" Margin="280,270,280,100" Background="LightGreen" Click="EnterClick">Авторизоваться</Button>
+            <PasswordBox x:Name="passBox" Margin="280,150,280,230"></PasswordBox>
+            <CheckBox x:Name="passVivible" Margin="550,160,100,240" FontSize="14" Unchecked="passVivibleUnchecked" Checked="PassVisibleChecked">Показать пароль</CheckBox>
+        </Grid>
+    </Viewbox>
+</Window>
+
