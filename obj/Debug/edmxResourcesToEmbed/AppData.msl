@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище GorkogoModelContainer" CdmEntityContainer="GorkogoEntities">
+    <EntitySetMapping Name="Заказы">
+      <EntityTypeMapping TypeName="GorkogoModel.Заказы">
+        <MappingFragment StoreEntitySet="Заказы">
+          <ScalarProperty Name="Индентификатор" ColumnName="Индентификатор" />
+          <ScalarProperty Name="Код_заказа" ColumnName="Код_заказа" />
+          <ScalarProperty Name="Услуги" ColumnName="Услуги" />
+          <ScalarProperty Name="Код_клиента" ColumnName="Код_клиента" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Заказы_подробно">
+      <EntityTypeMapping TypeName="GorkogoModel.Заказы_подробно">
+        <MappingFragment StoreEntitySet="Заказы_подробно">
+          <ScalarProperty Name="Индентификатор" ColumnName="Индентификатор" />
+          <ScalarProperty Name="Код_заказа" ColumnName="Код_заказа" />
+          <ScalarProperty Name="Дата_создания" ColumnName="Дата_создания" />
+          <ScalarProperty Name="Время_заказа" ColumnName="Время_заказа" />
+          <ScalarProperty Name="Код_клиента" ColumnName="Код_клиента" />
+          <ScalarProperty Name="Услуги" ColumnName="Услуги" />
+          <ScalarProperty Name="Статус" ColumnName="Статус" />
+          <ScalarProperty Name="Дата_закрытия" ColumnName="Дата_закрытия" />
+          <ScalarProperty Name="Время_проката" ColumnName="Время_проката" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Клиенты">
+      <EntityTypeMapping TypeName="GorkogoModel.Клиенты">
+        <MappingFragment StoreEntitySet="Клиенты">
+          <ScalarProperty Name="ФИО" ColumnName="ФИО" />
+          <ScalarProperty Name="Код_клиента" ColumnName="Код_клиента" />
+          <ScalarProperty Name="Паспортные_данные" ColumnName="Паспортные_данные" />
+          <ScalarProperty Name="Дата_рождения" ColumnName="Дата_рождения" />
+          <ScalarProperty Name="Адрес" ColumnName="Адрес" />
+          <ScalarProperty Name="e_mail" ColumnName="e_mail" />
+          <ScalarProperty Name="Пароль" ColumnName="Пароль" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Сотрудники">
+      <EntityTypeMapping TypeName="GorkogoModel.Сотрудники">
+        <MappingFragment StoreEntitySet="Сотрудники">
+          <ScalarProperty Name="Код_сотрудника" ColumnName="Код_сотрудника" />
+          <ScalarProperty Name="Должность" ColumnName="Должность" />
+          <ScalarProperty Name="ФИО" ColumnName="ФИО" />
+          <ScalarProperty Name="Логин" ColumnName="Логин" />
+          <ScalarProperty Name="Пароль" ColumnName="Пароль" />
+          <ScalarProperty Name="Последний_вход" ColumnName="Последний_вход" />
+          <ScalarProperty Name="Тип_входа" ColumnName="Тип_входа" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Услуги">
+      <EntityTypeMapping TypeName="GorkogoModel.Услуги">
+        <MappingFragment StoreEntitySet="Услуги">
+          <ScalarProperty Name="Индентификатор" ColumnName="Индентификатор" />
+          <ScalarProperty Name="Наименование_услуги" ColumnName="Наименование_услуги" />
+          <ScalarProperty Name="Код_услуги" ColumnName="Код_услуги" />
+          <ScalarProperty Name="Стоимость_руб_за_час" ColumnName="Стоимость_руб_за_час" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
