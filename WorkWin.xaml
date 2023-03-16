@@ -1,0 +1,24 @@
+﻿<Window x:Class="Gorkogo.WorkWin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Gorkogo"
+        mc:Ignorable="d"
+        Title="WorkWin" Height="450" Width="800">
+    <Grid>
+        <Label x:Name="timer" FontSize="18" Margin="0,384,0,0" Background="DarkGreen" Foreground="White"></Label>
+        <Button Margin="269,333,268,40" FontSize="18" Background="LightGreen">Сформировать заказ</Button>
+        <ComboBox Margin="10,19,578,373" FontSize="18">
+            <ComboBoxItem IsSelected="True">Выберите клиента</ComboBoxItem>
+        </ComboBox>
+        <ComboBox x:Name="uslugi" FontSize="18" Margin="10,51,612,340">
+            <ComboBoxItem IsSelected="True">Выберите услугу</ComboBoxItem>
+        </ComboBox>
+        <Button Margin="185,51,578,340" Background="White" Click="DobavitUsluguClick">
+            <Image Source="D:\bin\student\Zykov\Gorkogo\Добавить.png"></Image>
+        </Button>
+        <TextBox Margin="10,94,578,298" FontSize="18">Введите время проката</TextBox>
+        <ListBox x:Name="spisokUslug" Margin="319,0,268,91" FontSize="18">Список услуг:</ListBox>
+    </Grid>
+</Window>

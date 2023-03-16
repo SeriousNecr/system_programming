@@ -1,0 +1,331 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище GorkogoModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Заказы">
+          <Key>
+            <PropertyRef Name="Индентификатор" />
+          </Key>
+          <Property Name="Индентификатор" Type="float" Nullable="false" />
+          <Property Name="Код_заказа" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Услуги" Type="float" Nullable="false" />
+          <Property Name="Код_клиента" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Заказы_подробно">
+          <Key>
+            <PropertyRef Name="Код_заказа" />
+          </Key>
+          <Property Name="Индентификатор" Type="float" Nullable="false" />
+          <Property Name="Код_заказа" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Дата_создания" Type="datetime" Nullable="false" />
+          <Property Name="Время_заказа" Type="datetime" Nullable="false" />
+          <Property Name="Код_клиента" Type="float" Nullable="false" />
+          <Property Name="Услуги" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Статус" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Дата_закрытия" Type="datetime" />
+          <Property Name="Время_проката" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Клиенты">
+          <Key>
+            <PropertyRef Name="Код_клиента" />
+          </Key>
+          <Property Name="ФИО" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Код_клиента" Type="float" Nullable="false" />
+          <Property Name="Паспортные_данные" Type="float" Nullable="false" />
+          <Property Name="Дата_рождения" Type="datetime" Nullable="false" />
+          <Property Name="Адрес" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="e_mail" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Пароль" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Сотрудники">
+          <Key>
+            <PropertyRef Name="Код_сотрудника" />
+          </Key>
+          <Property Name="Код_сотрудника" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Должность" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="ФИО" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Логин" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Пароль" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Последний_вход" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Тип_входа" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Услуги">
+          <Key>
+            <PropertyRef Name="Индентификатор" />
+          </Key>
+          <Property Name="Индентификатор" Type="float" Nullable="false" />
+          <Property Name="Наименование_услуги" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Код_услуги" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Стоимость_руб_за_час" Type="float" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Заказы_Заказы_подробно">
+          <End Role="Заказы_подробно" Type="Self.Заказы_подробно" Multiplicity="1" />
+          <End Role="Заказы" Type="Self.Заказы" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Заказы_подробно">
+              <PropertyRef Name="Код_заказа" />
+            </Principal>
+            <Dependent Role="Заказы">
+              <PropertyRef Name="Код_заказа" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Заказы_Клиенты">
+          <End Role="Клиенты" Type="Self.Клиенты" Multiplicity="1" />
+          <End Role="Заказы" Type="Self.Заказы" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Клиенты">
+              <PropertyRef Name="Код_клиента" />
+            </Principal>
+            <Dependent Role="Заказы">
+              <PropertyRef Name="Код_клиента" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Заказы_Услуги">
+          <End Role="Услуги" Type="Self.Услуги" Multiplicity="1" />
+          <End Role="Заказы" Type="Self.Заказы" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Услуги">
+              <PropertyRef Name="Индентификатор" />
+            </Principal>
+            <Dependent Role="Заказы">
+              <PropertyRef Name="Услуги" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище GorkogoModelContainer">
+          <EntitySet Name="Заказы" EntityType="Self.Заказы" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Заказы_подробно" EntityType="Self.Заказы_подробно" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Клиенты" EntityType="Self.Клиенты" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Сотрудники" EntityType="Self.Сотрудники" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Услуги" EntityType="Self.Услуги" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Заказы_Заказы_подробно" Association="Self.FK_Заказы_Заказы_подробно">
+            <End Role="Заказы_подробно" EntitySet="Заказы_подробно" />
+            <End Role="Заказы" EntitySet="Заказы" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Заказы_Клиенты" Association="Self.FK_Заказы_Клиенты">
+            <End Role="Клиенты" EntitySet="Клиенты" />
+            <End Role="Заказы" EntitySet="Заказы" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Заказы_Услуги" Association="Self.FK_Заказы_Услуги">
+            <End Role="Услуги" EntitySet="Услуги" />
+            <End Role="Заказы" EntitySet="Заказы" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GorkogoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Заказы">
+          <Key>
+            <PropertyRef Name="Индентификатор" />
+          </Key>
+          <Property Name="Индентификатор" Type="Double" Nullable="false" />
+          <Property Name="Код_заказа" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Услуги" Type="Double" Nullable="false" />
+          <Property Name="Код_клиента" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Заказы_подробно" Relationship="Self.FK_Заказы_Заказы_подробно" FromRole="Заказы" ToRole="Заказы_подробно" />
+          <NavigationProperty Name="Клиенты" Relationship="Self.FK_Заказы_Клиенты" FromRole="Заказы" ToRole="Клиенты" />
+          <NavigationProperty Name="Услуги1" Relationship="Self.FK_Заказы_Услуги" FromRole="Заказы" ToRole="Услуги" />
+        </EntityType>
+        <EntityType Name="Заказы_подробно">
+          <Key>
+            <PropertyRef Name="Код_заказа" />
+          </Key>
+          <Property Name="Индентификатор" Type="Double" Nullable="false" />
+          <Property Name="Код_заказа" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Дата_создания" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Время_заказа" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Код_клиента" Type="Double" Nullable="false" />
+          <Property Name="Услуги" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Статус" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Дата_закрытия" Type="DateTime" Precision="3" />
+          <Property Name="Время_проката" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Заказы" Relationship="Self.FK_Заказы_Заказы_подробно" FromRole="Заказы_подробно" ToRole="Заказы" />
+        </EntityType>
+        <EntityType Name="Клиенты">
+          <Key>
+            <PropertyRef Name="Код_клиента" />
+          </Key>
+          <Property Name="ФИО" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Код_клиента" Type="Double" Nullable="false" />
+          <Property Name="Паспортные_данные" Type="Double" Nullable="false" />
+          <Property Name="Дата_рождения" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Адрес" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="e_mail" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Пароль" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Заказы" Relationship="Self.FK_Заказы_Клиенты" FromRole="Клиенты" ToRole="Заказы" />
+        </EntityType>
+        <EntityType Name="Сотрудники">
+          <Key>
+            <PropertyRef Name="Код_сотрудника" />
+          </Key>
+          <Property Name="Код_сотрудника" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Должность" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ФИО" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Логин" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Пароль" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Последний_вход" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Тип_входа" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Услуги">
+          <Key>
+            <PropertyRef Name="Индентификатор" />
+          </Key>
+          <Property Name="Индентификатор" Type="Double" Nullable="false" />
+          <Property Name="Наименование_услуги" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Код_услуги" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Стоимость_руб_за_час" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Заказы" Relationship="Self.FK_Заказы_Услуги" FromRole="Услуги" ToRole="Заказы" />
+        </EntityType>
+        <Association Name="FK_Заказы_Заказы_подробно">
+          <End Role="Заказы_подробно" Type="Self.Заказы_подробно" Multiplicity="1" />
+          <End Role="Заказы" Type="Self.Заказы" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Заказы_подробно">
+              <PropertyRef Name="Код_заказа" />
+            </Principal>
+            <Dependent Role="Заказы">
+              <PropertyRef Name="Код_заказа" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Заказы_Клиенты">
+          <End Role="Клиенты" Type="Self.Клиенты" Multiplicity="1" />
+          <End Role="Заказы" Type="Self.Заказы" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Клиенты">
+              <PropertyRef Name="Код_клиента" />
+            </Principal>
+            <Dependent Role="Заказы">
+              <PropertyRef Name="Код_клиента" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Заказы_Услуги">
+          <End Role="Услуги" Type="Self.Услуги" Multiplicity="1" />
+          <End Role="Заказы" Type="Self.Заказы" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Услуги">
+              <PropertyRef Name="Индентификатор" />
+            </Principal>
+            <Dependent Role="Заказы">
+              <PropertyRef Name="Услуги" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GorkogoEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Заказы" EntityType="Self.Заказы" />
+          <EntitySet Name="Заказы_подробно" EntityType="Self.Заказы_подробно" />
+          <EntitySet Name="Клиенты" EntityType="Self.Клиенты" />
+          <EntitySet Name="Сотрудники" EntityType="Self.Сотрудники" />
+          <EntitySet Name="Услуги" EntityType="Self.Услуги" />
+          <AssociationSet Name="FK_Заказы_Заказы_подробно" Association="Self.FK_Заказы_Заказы_подробно">
+            <End Role="Заказы_подробно" EntitySet="Заказы_подробно" />
+            <End Role="Заказы" EntitySet="Заказы" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Заказы_Клиенты" Association="Self.FK_Заказы_Клиенты">
+            <End Role="Клиенты" EntitySet="Клиенты" />
+            <End Role="Заказы" EntitySet="Заказы" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Заказы_Услуги" Association="Self.FK_Заказы_Услуги">
+            <End Role="Услуги" EntitySet="Услуги" />
+            <End Role="Заказы" EntitySet="Заказы" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище GorkogoModelContainer" CdmEntityContainer="GorkogoEntities">
+          <EntitySetMapping Name="Заказы">
+            <EntityTypeMapping TypeName="GorkogoModel.Заказы">
+              <MappingFragment StoreEntitySet="Заказы">
+                <ScalarProperty Name="Индентификатор" ColumnName="Индентификатор" />
+                <ScalarProperty Name="Код_заказа" ColumnName="Код_заказа" />
+                <ScalarProperty Name="Услуги" ColumnName="Услуги" />
+                <ScalarProperty Name="Код_клиента" ColumnName="Код_клиента" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Заказы_подробно">
+            <EntityTypeMapping TypeName="GorkogoModel.Заказы_подробно">
+              <MappingFragment StoreEntitySet="Заказы_подробно">
+                <ScalarProperty Name="Индентификатор" ColumnName="Индентификатор" />
+                <ScalarProperty Name="Код_заказа" ColumnName="Код_заказа" />
+                <ScalarProperty Name="Дата_создания" ColumnName="Дата_создания" />
+                <ScalarProperty Name="Время_заказа" ColumnName="Время_заказа" />
+                <ScalarProperty Name="Код_клиента" ColumnName="Код_клиента" />
+                <ScalarProperty Name="Услуги" ColumnName="Услуги" />
+                <ScalarProperty Name="Статус" ColumnName="Статус" />
+                <ScalarProperty Name="Дата_закрытия" ColumnName="Дата_закрытия" />
+                <ScalarProperty Name="Время_проката" ColumnName="Время_проката" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Клиенты">
+            <EntityTypeMapping TypeName="GorkogoModel.Клиенты">
+              <MappingFragment StoreEntitySet="Клиенты">
+                <ScalarProperty Name="ФИО" ColumnName="ФИО" />
+                <ScalarProperty Name="Код_клиента" ColumnName="Код_клиента" />
+                <ScalarProperty Name="Паспортные_данные" ColumnName="Паспортные_данные" />
+                <ScalarProperty Name="Дата_рождения" ColumnName="Дата_рождения" />
+                <ScalarProperty Name="Адрес" ColumnName="Адрес" />
+                <ScalarProperty Name="e_mail" ColumnName="e_mail" />
+                <ScalarProperty Name="Пароль" ColumnName="Пароль" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Сотрудники">
+            <EntityTypeMapping TypeName="GorkogoModel.Сотрудники">
+              <MappingFragment StoreEntitySet="Сотрудники">
+                <ScalarProperty Name="Код_сотрудника" ColumnName="Код_сотрудника" />
+                <ScalarProperty Name="Должность" ColumnName="Должность" />
+                <ScalarProperty Name="ФИО" ColumnName="ФИО" />
+                <ScalarProperty Name="Логин" ColumnName="Логин" />
+                <ScalarProperty Name="Пароль" ColumnName="Пароль" />
+                <ScalarProperty Name="Последний_вход" ColumnName="Последний_вход" />
+                <ScalarProperty Name="Тип_входа" ColumnName="Тип_входа" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Услуги">
+            <EntityTypeMapping TypeName="GorkogoModel.Услуги">
+              <MappingFragment StoreEntitySet="Услуги">
+                <ScalarProperty Name="Индентификатор" ColumnName="Индентификатор" />
+                <ScalarProperty Name="Наименование_услуги" ColumnName="Наименование_услуги" />
+                <ScalarProperty Name="Код_услуги" ColumnName="Код_услуги" />
+                <ScalarProperty Name="Стоимость_руб_за_час" ColumnName="Стоимость_руб_за_час" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
